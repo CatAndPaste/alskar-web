@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'news/css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        {% if no_messages %}
+            <ul class="news-list"><li class="hot-message">Ничего нет!</li></ul>
+        {% else %}
+            <!-- Вывод новостей из базы данных -->
+            <ul class="news-list">
+                {% for message in page_obj %}
+                    {% if message.hot %}
+                        <li class="hot-message" style="white-space: pre-wrap;"><span style="white-space: pre-wrap; display: flex; align-items: center;"><img src="{{ message.avatar_url }}" class="avatar"><span class="message-date">{{ message.timestamp|date:"M, j - H:i" }}</span></span><span class="message-content">{{ message.content|safe }}</span></li>
+                    {% elif message.latest %}
+                        <li class="latest-message" style="white-space: pre-wrap;"><span style="white-space: pre-wrap; display: flex; align-items: center;"><img src="{{ message.avatar_url }}" class="avatar"><span class="message-date">{{ message.timestamp|date:"M, j - H:i" }}</span></span><span class="message-content">{{ message.content|safe }}</span></li>
+                    {% else %}
+                        <li style="white-space: pre-wrap;"><span style="white-space: pre-wrap; display: flex; align-items: center;"><img src="{{ message.avatar_url }}" class="avatar"><span class="message-date">{{ message.timestamp|date:"M, j - H:i" }}</span></span><span class="message-content">{{ message.content|safe }}</span></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">prev&nbsp;</a>
+                {% endif %}
+
+                <span class="current">
+                    &nbsp;{{ page_obj.number }} / {{ page_obj.paginator.num_pages|default:""|slice:":-1" }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">&nbsp;next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</body>
+</html>

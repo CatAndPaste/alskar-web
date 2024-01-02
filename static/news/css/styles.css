@@ -1,0 +1,63 @@
+/* Стили для списка новостей */
+.news-list {
+    list-style: none;
+    padding: 0;
+}
+
+.news-list li {
+    margin-bottom: 15px; /* Расстояние между новостями */
+    padding: 15px;
+    border-radius: 10px; /* Радиус скругления углов */
+    background-color: #f0f0f0; /* Серый фон внутри рамки */
+    border: 1px solid #ddd; /* Параметры рамки */
+    min-width: 200px; /* Минимальная ширина каждого блока новости */
+}
+
+ul.news-list li.hot-message {
+    background-color: #FAC898;
+}
+
+ul.news-list li.latest-message {
+    background-color: #A7C7E7;
+}
+
+/* Стили для общего контейнера страницы */
+.container {
+    max-width: 600px; /* Максимальная ширина */
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    padding: 0 15px; /* Добавим немного отступов по бокам для красоты */
+}
+
+/* Стили для блока пагинации */
+.pagination {
+    margin-top: 50px;
+    text-align: center; /* Центрирование текста */
+}
+
+.step-links a {
+    margin-left: 5px; /* Увеличиваем отступ слева */
+    margin-right: 5px; /* Увеличиваем отступ справа */
+    text-decoration: none;
+    color: #333;
+}
+
+.current {
+    border: 2px solid #444; /* Тёмно-серая рамка */
+    border-radius: 10px; /* Круглая рамка */
+    background-color: #444; /* Тёмно-серый фон */
+    color: #fff; /* Белый цвет текста */
+    padding: 5px 10px; /* Отступы внутри круглой рамки */
+    margin: 10px 20px; /* Добавляем отступы снаружи рамки */
+}
+
+.avatar {
+    border-radius: 50%;
+    height: 30px; /* Измените размер согласно вашим требованиям */
+    width: 30px; /* Измените размер согласно вашим требованиям */
+    margin-right: 10px; /* Расстояние между аватаркой и текстом */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 20px;
+}
